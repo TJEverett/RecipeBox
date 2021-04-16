@@ -1,0 +1,28 @@
+@{
+  Layout = "_Layout";
+}
+
+@model RecipeBox.Models.Recipe
+
+<h2>Recipe Details:</h2>
+<hr>
+<h3>Dish Name: @Html.DisplayFor(model => model.DishName)</h3>
+<h4>@Html.DisplayFor(model => model.StarRating)/5 Stars</h4>
+<h4>Ingredients:</h4>
+<ul>
+  @foreach (string entry in Model.IngredientsList)
+  {
+    <li>@entry</li>
+  }
+</ul>
+<h4>Instructions:</h4>
+<ol>
+  @foreach (string entry in Model.InstructionsList)
+  {
+    <li>@entry</li>
+  }
+</ol>
+
+<p>@Html.ActionLink("Back to Recipe Box", "Index")</p>
+<p>@Html.ActionLink("Edit Recipe", "Edit", new { id = Model.RecipeId })</p>
+<p>@Html.ActionLink("Delete Recipe", "Delete", new { id = Model.RecipeId })</p>

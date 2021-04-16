@@ -1,0 +1,55 @@
+@{
+  Layout = "_Layout";
+}
+
+@model RecipeBox.Models.Recipe
+
+<h3>Edit Recipe</h3>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.RecipeId)
+
+  @Html.Label("Dish Title:")
+  @Html.TextBoxFor(model => model.DishName)
+  <br>
+  <br>
+
+  @Html.Label("Star Rating (0-5):")
+  @Html.TextBoxFor(model => model.StarRating, new { type = "number", min = "0", max = "5", step = "1"})
+  <br>
+  <br>
+
+  @Html.Label("Ingredients:")
+  <br>
+  @for(int i = 0; i < ViewBag.IngredientsLength; i++)
+  {
+    @Html.Label($"{i + 1}) ")
+    @Html.TextBoxFor(model => model.IngredientsList[i])
+    <br>
+  }
+  @Html.Label("Add new Ingredient slot on submit")
+  @Html.CheckBoxFor(model => model.IngredientsGrow)
+  <br>
+  <br>
+  <br>
+
+  @Html.Label("Instructions:")
+  <br>
+  @for(int i = 0; i < ViewBag.InstructionsLength; i++)
+  {
+    @Html.Label($"{i + 1}) ")
+    @Html.TextBoxFor(model => model.InstructionsList[i])
+    <br>
+  }
+  @Html.Label("Add new Instruction slot on submit")
+  @Html.CheckBoxFor(model => model.InstructionsGrow)
+  <br>
+  <br>
+  <br>
+
+  <p>All empty slots for ingredients and instructions will be removed upon final submition.</p>
+  <input type="submit" value="Submit" />
+}
+
+<p>@Html.ActionLink("Back to Recipe Box", "Index")</p>

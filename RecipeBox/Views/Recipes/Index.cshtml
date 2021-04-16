@@ -1,0 +1,89 @@
+@{
+  Layout = "_Layout";
+}
+
+@using RecipeBox.Models;
+@model List<RecipeBox.Models.Recipe>;
+
+<h1>@User.Identity.Name's Recipes:</h1>
+
+@if(ViewBag.fiveStar.Count != 0)
+{
+  <h3>5 Stars:</h3>
+  <ul>
+    @foreach (Recipe recipe in ViewBag.fiveStar)
+    {
+      <li>@Html.ActionLink($"{recipe.DishName}", "Details", new { id = recipe.RecipeId })</li>
+    }
+  </ul>
+}
+
+@if(ViewBag.fourStar.Count != 0)
+{
+  <h3>4 Stars:</h3>
+  <ul>
+    @foreach (Recipe recipe in ViewBag.fourStar)
+    {
+      <li>@Html.ActionLink($"{recipe.DishName}", "Details", new { id = recipe.RecipeId })</li>
+    }
+  </ul>
+}
+
+@if(ViewBag.threeStar.Count != 0)
+{
+  <h3>3 Stars:</h3>
+  <ul>
+    @foreach (Recipe recipe in ViewBag.threeStar)
+    {
+      <li>@Html.ActionLink($"{recipe.DishName}", "Details", new { id = recipe.RecipeId })</li>
+    }
+  </ul>
+}
+
+@if(ViewBag.twoStar.Count != 0)
+{
+  <h3>2 Stars:</h3>
+  <ul>
+    @foreach (Recipe recipe in ViewBag.twoStar)
+    {
+      <li>@Html.ActionLink($"{recipe.DishName}", "Details", new { id = recipe.RecipeId })</li>
+    }
+  </ul>
+}
+
+@if(ViewBag.oneStar.Count != 0)
+{
+  <h3>1 Stars:</h3>
+  <ul>
+    @foreach (Recipe recipe in ViewBag.oneStar)
+    {
+      <li>@Html.ActionLink($"{recipe.DishName}", "Details", new { id = recipe.RecipeId })</li>
+    }
+  </ul>
+}
+
+@if(ViewBag.zeroStar.Count != 0)
+{
+  <h3>0 Stars:</h3>
+  <ul>
+    @foreach (Recipe recipe in ViewBag.zeroStar)
+    {
+      <li>@Html.ActionLink($"{recipe.DishName}", "Details", new { id = recipe.RecipeId })</li>
+    }
+  </ul>
+}
+
+@if(!(ViewBag.fiveStar.Count != 0 || ViewBag.fourStar.Count != 0 || ViewBag.threeStar.Count != 0 || ViewBag.twoStar.Count != 0 || ViewBag.oneStar.Count != 0 || ViewBag.zeroStar.Count != 0))
+{
+  <h3>There are currently no Recipes.</h3>
+}
+
+@using (Html.BeginForm())
+{
+  <label for="search">Search by Ingredient</label>
+  <input type="text" id="search" name="search">
+  <input type="submit" value="Search" />
+}
+
+<p>@Html.ActionLink("New Recipe", "Create", new { ingredientNumber = 3, instructionNumber = 3 })</p>
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
